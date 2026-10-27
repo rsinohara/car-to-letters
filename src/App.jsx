@@ -14,10 +14,12 @@ function Game({ mode, onExit }) {
   // In "name" mode the picture is shown and the kid picks the written name;
   // in "picture" mode the name is spelled out and the kid picks the picture.
   const [pictures, setPictures] = useState(() => Object.fromEntries(CARS.map((c) => [c.id, pickRandom(c.images)])))
+  const choices = mode === 'name' ? [...new Map(CARS.map((car) => [car.name, car])).values()] : CARS
 
   const guess = (id) => {
     if (won) return
-    if (id === round.car.id) {
+    const selectedCar = CARS.find((car) => car.id === id)
+    if (selectedCar?.name === round.car.name) {
       setWon(true)
       setWrong(null)
     } else {
@@ -48,12 +50,12 @@ function Game({ mode, onExit }) {
         </div>
       )}
       <div className="flex w-full max-w-3xl flex-wrap justify-center gap-4">
-        {CARS.map((car) => (
+        {choices.map((car) => (
           <button
             key={`${car.id}-${wrong?.n ?? 0}`}
             onClick={() => guess(car.id)}
             className={`rounded-2xl border-4 bg-white p-3 text-3xl font-bold shadow transition hover:scale-105 ${
-              won && car.id === round.car.id ? 'animate-pop border-green-500 bg-green-200' : 'border-sky-300'
+              won && car.name === round.car.name ? 'animate-pop border-green-500 bg-green-200' : 'border-sky-300'
             } ${shake(car.id)}`}
           >
             {mode === 'name' ? car.name : <img src={pictures[car.id]} alt="" className="w-64 rounded-xl" />}
