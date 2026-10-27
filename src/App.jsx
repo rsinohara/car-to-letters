@@ -1,20 +1,38 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CARS, pickRandom } from './cars'
 import Confetti from './Confetti'
 
+const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5)
+
 const newRound = () => {
   const car = pickRandom(CARS)
-  return { car, image: pickRandom(car.images) }
+  const others = [...new Map(CARS.filter((c) => c.name !== car.name).map((c) => [c.name, c])).values()]
+  const choices = shuffle([car, ...shuffle(others).slice(0, 2)])
+  return {
+    car,
+    image: pickRandom(car.images),
+    choices,
+    pictures: Object.fromEntries(choices.map((c) => [c.id, pickRandom(c.images)])),
+  }
 }
+
+const NEXT_DELAY_MS = 2500
 
 function Game({ mode, onExit }) {
   const [round, setRound] = useState(newRound)
   const [won, setWon] = useState(false)
   const [wrong, setWrong] = useState(null)
-  // In "name" mode the picture is shown and the kid picks the written name;
-  // in "picture" mode the name is spelled out and the kid picks the picture.
-  const [pictures, setPictures] = useState(() => Object.fromEntries(CARS.map((c) => [c.id, pickRandom(c.images)])))
-  const choices = mode === 'name' ? [...new Map(CARS.map((car) => [car.name, car])).values()] : CARS
+  const { choices, pictures } = round
+
+  useEffect(() => {
+    if (!won) return
+    const t = setTimeout(() => {
+      setRound(newRound())
+      setWon(false)
+      setWrong(null)
+    }, NEXT_DELAY_MS)
+    return () => clearTimeout(t)
+  }, [won])
 
   const guess = (id) => {
     if (won) return
@@ -25,13 +43,6 @@ function Game({ mode, onExit }) {
     } else {
       setWrong({ id, n: Date.now() })
     }
-  }
-
-  const next = () => {
-    setRound(newRound())
-    setPictures(Object.fromEntries(CARS.map((c) => [c.id, pickRandom(c.images)])))
-    setWon(false)
-    setWrong(null)
   }
 
   const shake = (id) => (wrong?.id === id ? 'animate-shake bg-red-200' : '')
@@ -66,9 +77,6 @@ function Game({ mode, onExit }) {
       {won && (
         <div className="flex flex-col items-center gap-3">
           <p className="animate-pop text-5xl font-extrabold text-green-600">🎉 You win! 🎉</p>
-          <button onClick={next} className="rounded-full bg-green-500 px-8 py-3 text-3xl font-bold text-white shadow">
-            Next ▶
-          </button>
         </div>
       )}
     </div>
