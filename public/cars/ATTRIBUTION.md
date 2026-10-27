@@ -1,0 +1,7 @@
+# Photo Credits
+
+All photos are from Wikimedia Commons and licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+- `t-cross/1.jpg`, `t-cross/2.jpg`, `t-cross/3.jpg`, and `t-cross/4.jpg`: [Volkswagen T-Cross 1X7A0366](https://commons.wikimedia.org/wiki/File:Volkswagen_T-Cross_1X7A0366.jpg), [Volkswagen T-Cross 1X7A0364](https://commons.wikimedia.org/wiki/File:Volkswagen_T-Cross_1X7A0364.jpg), [Volkswagen T-Cross 1X7A0363](https://commons.wikimedia.org/wiki/File:Volkswagen_T-Cross_1X7A0363.jpg), and [Volkswagen T-Cross (2023) 1X7A2499](https://commons.wikimedia.org/wiki/File:Volkswagen_T-Cross_(2023)_1X7A2499.jpg), by Alexander Migl.
+- `toro/1.jpg` and `toro/2.jpg`: [Fiat Toro 2024 Volcano front](https://commons.wikimedia.org/wiki/File:Fiat_Toro_2024_Volcano_in_Montevideo,_Uruguay_(front).jpg) and [rear](https://commons.wikimedia.org/wiki/File:Fiat_Toro_2024_Volcano_in_Montevideo,_Uruguay_(rear).jpg), by NaBUru38.
+- `toro/3.jpg` and `toro/4.jpg`: [Fiat Toro 2018 front](https://commons.wikimedia.org/wiki/File:Fiat_Toro_2018_in_Punta_del_Este_(front)_01.jpg) and [back](https://commons.wikimedia.org/wiki/File:Fiat_Toro_2018_in_Punta_del_Este_(back).jpg), by NaBUru38.

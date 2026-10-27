@@ -18,6 +18,6 @@ npm run build   # production build (registers an offline service worker)
 
 ### Adding cars and pictures
 
-Add a line to `src/cars.js` and put pictures named `side`, `front`, `rear`, `three-quarter` (`.svg`) in `public/cars/<id>/`. A random picture is chosen each round.
+Add a line to `src/cars.js` (with the number of pictures) and put pictures named `1.jpg`, `2.jpg`, … in `public/cars/<id>/`. A random picture is chosen each round.
 The bundled pictures are simple placeholder illustrations; replace them with real photos
-(keep the file names, or edit `angles`/extension in `src/cars.js`). All images are local and cached by the service worker for offline play.
+(keep the numbered file names and update the count, or edit the extension in `src/cars.js`). All images are local and cached by the service worker for offline play.
