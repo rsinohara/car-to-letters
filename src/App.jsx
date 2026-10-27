@@ -75,12 +75,35 @@ function Game({ mode, onExit }) {
   )
 }
 
+function Audit({ onExit }) {
+  return (
+    <div className="flex min-h-screen flex-col gap-6 p-4">
+      <button onClick={onExit} className="self-start text-lg text-sky-700 underline">← Back</button>
+      {CARS.map((car) => (
+        <section key={car.id}>
+          <h2 className="text-xl font-bold text-sky-800">{car.name} <span className="font-mono text-sm text-gray-500">({car.id})</span></h2>
+          <div className="flex flex-wrap gap-2">
+            {car.images.map((src) => (
+              <img key={src} src={src} alt={`${car.name} ${src}`} title={src} className="h-40 rounded-lg shadow" />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )
+}
+
 export default function App() {
-  const [mode, setMode] = useState(null)
+  const [mode, setMode] = useState(() => (new URLSearchParams(location.search).has('audit') ? 'audit' : null))
+  const [taps, setTaps] = useState(0)
+  if (mode === 'audit') return <Audit onExit={() => setMode(null)} />
   if (mode) return <Game mode={mode} onExit={() => setMode(null)} />
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-4">
-      <h1 className="text-5xl font-extrabold text-sky-800">🚗 Guess the Car!</h1>
+      <h1
+        onClick={() => (taps + 1 >= 5 ? (setTaps(0), setMode('audit')) : setTaps(taps + 1))}
+        className="text-5xl font-extrabold text-sky-800"
+      >🚗 Guess the Car!</h1>
       <button onClick={() => setMode('name')} className="w-72 rounded-2xl bg-sky-500 px-6 py-5 text-2xl font-bold text-white shadow">
         🖼️ See the car → pick the name
       </button>
