@@ -14,7 +14,11 @@ Correct guesses trigger a celebration; wrong ones can be retried.
 npm install
 npm run dev     # development
 npm run build   # production build (registers an offline service worker)
+npm run preview # serve the built app on your local network
 ```
+
+While your phone and computer are on the same Wi-Fi network, open the network URL
+printed by Vite (or `http://<computer-local-IP>:4173`) on your phone.
 
 ### Adding cars and pictures
 
