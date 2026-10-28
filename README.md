@@ -14,7 +14,18 @@ Correct guesses trigger a celebration; wrong ones can be retried.
 npm install
 npm run dev     # development
 npm run build   # production build (registers an offline service worker)
+npm run preview # serve the built app on your local network
 ```
+
+While your phone and computer are on the same Wi-Fi network, open the network URL
+printed by Vite (or `http://<computer-local-IP>:4173`) on your phone.
+
+### Hosting on GitHub Pages
+
+The GitHub Actions workflow deploys the app when changes are pushed to `main`.
+In the repository's **Settings → Pages**, set the build and deployment source to
+**GitHub Actions**. After the workflow succeeds, open
+https://rsinohara.github.io/car-to-letters/ from any device.
 
 ### Adding cars and pictures
 
