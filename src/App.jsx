@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { CARS, pickRandom } from './cars'
 import Confetti from './Confetti'
+import Memory from './Memory'
 
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5)
 
@@ -105,6 +106,7 @@ export default function App() {
   const [mode, setMode] = useState(() => (new URLSearchParams(location.search).has('audit') ? 'audit' : null))
   const [taps, setTaps] = useState(0)
   if (mode === 'audit') return <Audit onExit={() => setMode(null)} />
+  if (mode === 'memory') return <Memory onExit={() => setMode(null)} />
   if (mode) return <Game mode={mode} onExit={() => setMode(null)} />
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-4">
@@ -117,6 +119,9 @@ export default function App() {
       </button>
       <button onClick={() => setMode('picture')} className="w-72 rounded-2xl bg-orange-500 px-6 py-5 text-2xl font-bold text-white shadow">
         🔤 Read the name → pick the car
+      </button>
+      <button onClick={() => setMode('memory')} className="w-72 rounded-2xl bg-emerald-500 px-6 py-5 text-2xl font-bold text-white shadow">
+        🧠 Memory game
       </button>
     </div>
   )
