@@ -62,13 +62,13 @@ export default function Memory({ onExit }) {
       </div>
       {done && <Confetti />}
       {done && (
-        <div className="flex flex-col items-center gap-2">
-          <p className="animate-pop text-4xl font-extrabold text-green-600">🎉 You win! 🎉</p>
-          <p className="text-2xl font-bold">{mistakes === 0 ? 'Perfect, no mistakes! 🌟' : `Mistakes: ${mistakes}`}</p>
+        <div className="flex flex-col items-center gap-2 text-center">
+          <p className="animate-pop text-3xl font-extrabold text-green-600 sm:text-4xl">🎉 You win! 🎉</p>
+          <p className="text-xl font-bold sm:text-2xl">{mistakes === 0 ? 'Perfect, no mistakes! 🌟' : `Mistakes: ${mistakes}`}</p>
           <button onClick={restart} className="rounded-2xl bg-emerald-500 px-5 py-3 text-xl font-bold text-white shadow">Play again</button>
         </div>
       )}
-      <div className="grid w-full max-w-2xl grid-cols-6 gap-1.5 sm:gap-2">
+      <div className="grid w-full max-w-2xl grid-cols-4 gap-1.5 sm:grid-cols-6 sm:gap-2">
         {deck.map((card) => {
           const gone = isGone(card)
           const up = open.some((c) => c.key === card.key)
@@ -91,7 +91,7 @@ export default function Memory({ onExit }) {
         })}
       </div>
       <p className="text-sm font-bold text-gray-500">Matched cars</p>
-      <div className="grid w-full max-w-2xl grid-cols-9 gap-1">
+      <div className="grid w-full max-w-2xl grid-cols-6 gap-1 sm:grid-cols-9">
         {Array.from({ length: PAIRS }, (_, i) => {
           const m = matched[i]
           return (
