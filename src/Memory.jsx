@@ -72,20 +72,14 @@ export default function Memory({ onExit }) {
         {deck.map((card) => {
           const gone = isGone(card)
           const up = open.some((c) => c.key === card.key)
-          const state = gone ? 'invisible' : up && pairOk ? 'animate-match border-green-500 bg-green-200' : up && bad ? 'animate-shake border-red-500 bg-red-200' : up ? 'border-sky-400 bg-white' : 'border-sky-600 bg-sky-500'
+          const state = gone ? 'border-green-500 bg-green-100' : up && pairOk ? 'border-green-500 bg-green-200' : up && bad ? 'animate-shake border-red-500 bg-red-200' : up ? 'border-sky-400 bg-white' : 'border-sky-600 bg-sky-500'
           return (
             <button
               key={card.key}
               onClick={() => flip(card)}
               className={`flex aspect-square items-center justify-center overflow-hidden rounded-lg border-2 p-0.5 text-center text-[10px] font-bold leading-tight shadow sm:text-lg ${state}`}
             >
-              {up ? (
-                <span key="up" className="animate-flip flex h-full w-full items-center justify-center">
-                  {card.kind === 'picture' ? <img src={card.src} alt="" className="h-full w-full rounded object-cover" /> : card.car.name}
-                </span>
-              ) : (
-                <span className="text-xl text-white sm:text-3xl">?</span>
-              )}
+              {card.kind === 'picture' ? <img src={card.src} alt={card.car.name} className="h-full w-full rounded object-cover" /> : card.car.name}
             </button>
           )
         })}
